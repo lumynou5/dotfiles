@@ -1,0 +1,20 @@
+#!/usr/bin/fish
+
+if not count $argv > /dev/null
+or not test -d $argv[1]
+	echo 'Expected a directory.'
+	exit 1
+end
+
+# Remove the tailing slash.
+set NAME (string replace -r '/$' '' $argv[1])
+
+set NAME (string replace -r '/' '_' $NAME)
+
+set TAR_NAME $NAME.tar.xz
+
+tar -cJf $TAR_NAME $argv[1]
+
+~/sh/dropbox_uploader upload $TAR_NAME /backup/
+
+rm $TAR_NAME

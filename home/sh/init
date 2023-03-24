@@ -1,0 +1,43 @@
+#!/usr/bin/bash
+
+# paru
+sudo pacman -S --needed base-devel
+git clone --depth 1 https://aur.archlinux.org/paru.git
+cd paru
+makepkg -si
+
+# fish
+paru -S fish
+chsh -s /usr/bin/fish
+echo '
+  curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
+  fisher install IlanCosman/tide@v5
+  fisher install nickeb96/puffer-fish
+  fisher install jorgebucaran/autopair.fish
+  fisher install meaningful-ooo/sponge
+' | fish
+
+# exa
+paru -S exa
+
+# debtap
+paru -S debtap
+sudo debtap -u
+
+# discord
+curl -sL https://discord.com/api/download?platform=linux&format=deb -o discord.deb
+debtap -q discord.deb
+paru -U *.zst
+rm *.deb *.zst
+
+# neofetch
+paru -S neofetch
+
+# fonts
+paru -S ttf-jetbrains-mono-nerd
+paru -S noto-fonts-cjk
+paru -S noto-fonts-emoji
+dconf write /org/gnome/desktop/interface/monospace-font-name 'JetBrainsMonoNL Nerd Font 12'
+
+echo \n\n
+neofetch
