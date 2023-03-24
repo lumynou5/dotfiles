@@ -1,0 +1,16 @@
+#!/usr/bin/fish
+
+paru -Sy
+set packages (paru -Qu | string split \n)
+
+set result
+for package in $packages
+	# Each line of the output of `paru -Qu` is like `name 1.0.0 -> 1.0.1`.
+	echo $package | read name old arrow new
+
+	if semver -r ^$old $new > /dev/null
+		set -a result $name
+	end
+end
+
+paru -S $result
