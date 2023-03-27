@@ -5,6 +5,8 @@ sudo pacman -S --needed base-devel
 git clone --depth 1 https://aur.archlinux.org/paru.git
 cd paru
 makepkg -si
+cd ..
+rm -rf paru
 
 # fish
 paru -S fish
@@ -21,6 +23,18 @@ echo '
 
 # exa
 paru -S exa
+echo '
+  alias -s ls "exa --icons"
+  alias -s ll "exa --icons -l"
+  alias -s la "exa --icons -la --git"
+  alias -s lt "exa --icons -laT --git --git-ignore git -I .git"
+' | fish
+
+# bat
+paru -S bat
+
+# downgrade
+paru -S downgrade
 
 # debtap
 paru -S debtap
@@ -36,6 +50,7 @@ rm *.deb *.zst
 paru -S neofetch
 
 # fonts
+paru -S ttf-jetbrains-mono
 paru -S ttf-jetbrains-mono-nerd
 paru -S noto-fonts-cjk
 paru -S noto-fonts-emoji
