@@ -29,6 +29,9 @@ echo '
   set -U fish_greeting
 ' | fish
 
+# kitty
+paru -S kitty
+
 # exa
 paru -S exa
 echo '
