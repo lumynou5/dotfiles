@@ -26,12 +26,6 @@ return {
     underline = true,
   },
 
-  options = {
-    opt = {
-      clipboard = "",
-    },
-  },
-
   lsp = {
     -- customize lsp formatting options
     formatting = {
