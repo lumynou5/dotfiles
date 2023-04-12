@@ -31,6 +31,10 @@ echo '
 
 # kitty
 paru -S kitty
+paru -R gnome-terminal
+paru -S --needed dconf
+dconf write /com/github/stunkymonkey/nautilus-open-any-terminal/terminal kitty
+dconf write /com/github/stunkymonkey/nautilus-open-any-terminal/new-tab true
 
 # exa
 paru -S exa
@@ -62,10 +66,10 @@ paru -S neofetch
 
 # fonts
 paru -S ttf-jetbrains-mono
-paru -S ttf-jetbrains-mono-nerd
+paru -S ttf-nerd-fonts-symbols-2048-em-mono
 paru -S noto-fonts-cjk
 paru -S noto-fonts-emoji
-dconf write /org/gnome/desktop/interface/monospace-font-name 'JetBrainsMonoNL Nerd Font 12'
+dconf write /org/gnome/desktop/interface/monospace-font-name 'JetBrains Mono 12'
 
 echo \n\n
 neofetch
