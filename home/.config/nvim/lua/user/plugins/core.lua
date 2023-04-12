@@ -20,58 +20,98 @@ return {
       return opts
     end,
   },
-  -- You can disable default plugins as follows:
-  -- { "max397574/better-escape.nvim", enabled = false },
-  --
-  -- You can also easily customize additional setup of plugins that is outside of the plugin's setup call
-  -- {
-  --   "L3MON4D3/LuaSnip",
-  --   config = function(plugin, opts)
-  --     require "plugins.configs.luasnip"(plugin, opts) -- include the default astronvim config that calls the setup call
-  --     -- add more custom luasnip configuration such as filetype extend or custom snippets
-  --     local luasnip = require "luasnip"
-  --     luasnip.filetype_extend("javascript", { "javascriptreact" })
-  --   end,
-  -- },
-  -- {
-  --   "windwp/nvim-autopairs",
-  --   config = function(plugin, opts)
-  --     require "plugins.configs.nvim-autopairs"(plugin, opts) -- include the default astronvim config that calls the setup call
-  --     -- add more custom autopairs configuration such as custom rules
-  --     local npairs = require "nvim-autopairs"
-  --     local Rule = require "nvim-autopairs.rule"
-  --     local cond = require "nvim-autopairs.conds"
-  --     npairs.add_rules(
-  --       {
-  --         Rule("$", "$", { "tex", "latex" })
-  --           -- don't add a pair if the next character is %
-  --           :with_pair(cond.not_after_regex "%%")
-  --           -- don't add a pair if  the previous character is xxx
-  --           :with_pair(
-  --             cond.not_before_regex("xxx", 3)
-  --           )
-  --           -- don't move right when repeat character
-  --           :with_move(cond.none())
-  --           -- don't delete if the next character is xx
-  --           :with_del(cond.not_after_regex "xx")
-  --           -- disable adding a newline when you press <cr>
-  --           :with_cr(cond.none()),
-  --       },
-  --       -- disable for .vim files, but it work for another filetypes
-  --       Rule("a", "a", "-vim")
-  --     )
-  --   end,
-  -- },
-  -- By adding to the which-key config and using our helper function you can add more which-key registered bindings
-  -- {
-  --   "folke/which-key.nvim",
-  --   config = function(plugin, opts)
-  --     require "plugins.configs.which-key"(plugin, opts) -- include the default astronvim config that calls the setup call
-  --     -- Add bindings which show up as group name
-  --     local wk = require "which-key"
-  --     wk.register({
-  --       b = { name = "Buffer" },
-  --     }, { mode = "n", prefix = "<leader>" })
-  --   end,
-  -- },
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    opts = function()
+      local global_commands = {
+        system_open = function(state) require("astronvim.utils").system_open(state.tree:get_node():get_id()) end,
+        parent_or_close = function(state)
+          local node = state.tree:get_node()
+          if (node.type == "directory" or node:has_children()) and node:is_expanded() then
+            state.commands.toggle_node(state)
+          else
+            require("neo-tree.ui.renderer").focus_node(state, node:get_parent_id())
+          end
+        end,
+        child_or_open = function(state)
+          local node = state.tree:get_node()
+          if node.type == "directory" or node:has_children() then
+            if not node:is_expanded() then -- if unexpanded, expand
+              state.commands.toggle_node(state)
+            else -- if expanded and has children, seleect the next child
+              require("neo-tree.ui.renderer").focus_node(state, node:get_child_ids()[1])
+            end
+          else -- if not a directory just open it
+            state.commands.open(state)
+          end
+        end,
+      }
+      local get_icon = require("astronvim.utils").get_icon
+      return {
+        close_if_last_window = true,
+        source_selector = {
+          winbar = true,
+          content_layout = "center",
+          tab_labels = {
+            filesystem = get_icon "FolderClosed" .. " File",
+            buffers = get_icon "DefaultFile" .. " Bufs",
+            git_status = get_icon "Git" .. " Git",
+            diagnostics = get_icon "Diagnostic" .. " Diagnostic",
+          },
+        },
+        default_component_configs = {
+          indent = { padding = 0 },
+          icon = {
+            folder_closed = get_icon "FolderClosed",
+            folder_open = get_icon "FolderOpen",
+            folder_empty = get_icon "FolderEmpty",
+            default = get_icon "DefaultFile",
+          },
+          modified = { symbol = get_icon "FileModified" },
+          git_status = {
+            symbols = {
+              added = get_icon "GitAdd",
+              deleted = get_icon "GitDelete",
+              modified = get_icon "GitChange",
+              renamed = get_icon "GitRenamed",
+              untracked = get_icon "GitUntracked",
+              ignored = get_icon "GitIgnored",
+              unstaged = get_icon "GitUnstaged",
+              staged = get_icon "GitStaged",
+              conflict = get_icon "GitConflict",
+            },
+          },
+        },
+        window = {
+          width = 30,
+          mappings = {
+            ["<space>"] = false, -- disable space until we figure out which-key disabling
+            ["[b"] = "prev_source",
+            ["]b"] = "next_source",
+            o = "open",
+            O = "system_open",
+            h = "parent_or_close",
+            l = "child_or_open",
+          },
+        },
+        filesystem = {
+          filtered_items = {
+            hide_dotfiles = false,
+            hide_by_name = {
+              ".git",
+            },
+          },
+          follow_current_file = true,
+          hijack_netrw_behavior = "open_current",
+          use_libuv_file_watcher = true,
+          commands = global_commands,
+        },
+        buffers = { commands = global_commands },
+        git_status = { commands = global_commands },
+        event_handlers = {
+          { event = "neo_tree_buffer_enter", handler = function(_) vim.opt_local.signcolumn = "auto" end },
+        },
+      }
+    end,
+  },
 }
