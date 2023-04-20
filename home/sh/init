@@ -32,6 +32,7 @@ echo '
 # kitty
 paru -S kitty
 paru -R gnome-terminal
+paru -S nautilus-open-any-terminal
 paru -S --needed dconf
 dconf write /com/github/stunkymonkey/nautilus-open-any-terminal/terminal kitty
 dconf write /com/github/stunkymonkey/nautilus-open-any-terminal/new-tab true
@@ -63,6 +64,9 @@ rm *.deb *.zst
 
 # neofetch
 paru -S neofetch
+
+# onefetch
+paru -S onefetch
 
 # fonts
 paru -S ttf-jetbrains-mono
