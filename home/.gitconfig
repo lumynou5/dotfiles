@@ -16,3 +16,5 @@
 	defaultBranch = main
 [merge]
 	ff = no
+[alias]
+	ff = merge --ff-only
