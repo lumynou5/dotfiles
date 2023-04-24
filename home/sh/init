@@ -3,10 +3,14 @@
 while true; do
   read -p "Are you sure to initialize? [y/N] "
   case $REPLY in
+    "") exit 1;;
     "n" | "N") exit 1;;
     "y" | "Y") break;;
   esac
 done
+
+# git
+sudo pacman -S git
 
 # paru
 sudo pacman -S --needed base-devel
@@ -61,6 +65,14 @@ curl -sL https://discord.com/api/download?platform=linux&format=deb -o discord.d
 debtap -q discord.deb
 paru -U *.zst --assume-installed gconf
 rm *.deb *.zst
+
+# firefox
+paru -S firefox
+
+# rime
+paru -S ibus-rime
+curl -sL https://raw.githubusercontent.com/rime/plum/master/rime-install | bash
+.config/ibus/rime/plum/rime-install andy0130tw/iridium-bpmf
 
 # neofetch
 paru -S neofetch
