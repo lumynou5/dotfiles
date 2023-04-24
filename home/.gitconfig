@@ -1,0 +1,18 @@
+[user]
+	name = Lumynous
+	email = lumynou5.tw@gmail.com
+	signingKey = ~/.ssh/lumynou5.pub
+[core]
+	excludesFile = ~/.gitignore
+	editor = nvim
+[gpg]
+	format = ssh
+[commit]
+	gpgSign = true
+[tag]
+	forceSignAnnotated = true
+	gpgSign = true
+[init]
+	defaultBranch = main
+[merge]
+	ff = no
