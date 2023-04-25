@@ -37,7 +37,6 @@ echo '
 paru -S kitty
 paru -R gnome-terminal
 paru -S nautilus-open-any-terminal
-paru -S --needed dconf
 dconf write /com/github/stunkymonkey/nautilus-open-any-terminal/terminal kitty
 dconf write /com/github/stunkymonkey/nautilus-open-any-terminal/new-tab true
 
@@ -71,8 +70,12 @@ paru -S firefox
 
 # rime
 paru -S ibus-rime
+if [ ! -d ~/.config/ibus/rime/ ]; then
+  mkdir -p ~/.config/ibus/rime/
+fi
+cd ~/.config/ibus/rime/
 curl -sL https://raw.githubusercontent.com/rime/plum/master/rime-install | bash
-.config/ibus/rime/plum/rime-install andy0130tw/iridium-bpmf
+plum/rime-install andy0130tw/iridium-bpmf
 
 # neofetch
 paru -S neofetch
