@@ -40,6 +40,10 @@ paru -S nautilus-open-any-terminal
 dconf write /com/github/stunkymonkey/nautilus-open-any-terminal/terminal kitty
 dconf write /com/github/stunkymonkey/nautilus-open-any-terminal/new-tab true
 
+# nvim
+paru -S nvim
+git clone --depth 1 https://github.com/AstroNvim/AstroNvim.git ~/.config/nvim/
+
 # exa
 paru -S exa
 echo '
@@ -67,6 +71,9 @@ rm *.deb *.zst
 
 # firefox
 paru -S firefox
+
+# obsidian
+paru -S obsidian-appimage
 
 # rime
 paru -S ibus-rime
