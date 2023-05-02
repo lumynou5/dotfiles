@@ -18,3 +18,5 @@
 	ff = no
 [alias]
 	ff = merge --ff-only
+[pull]
+	ff = yes
