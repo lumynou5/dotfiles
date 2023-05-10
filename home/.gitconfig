@@ -15,8 +15,9 @@
 [init]
 	defaultBranch = main
 [merge]
-	ff = no
+	ff = false
 [pull]
-	ff = yes
+	ff = true
 [alias]
+	graph = log --all --graph --color --decorate --oneline
 	ff = merge --ff-only
