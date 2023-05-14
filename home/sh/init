@@ -64,7 +64,7 @@ paru -S debtap
 sudo debtap -u
 
 # discord
-curl -sL https://discord.com/api/download?platform=linux&format=deb -o discord.deb
+curl -sL 'https://discord.com/api/download?platform=linux&format=deb' -o discord.deb
 debtap -q discord.deb
 paru -U *.zst --assume-installed gconf
 rm *.deb *.zst
