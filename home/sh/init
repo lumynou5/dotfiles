@@ -10,10 +10,10 @@ while true; do
 done
 
 # git
-sudo pacman -S git
+sudo pacman -S --needed --noconfirm git
 
 # paru
-sudo pacman -S --needed base-devel
+sudo pacman -S --needed --noconfirm base-devel
 git clone --depth 1 https://aur.archlinux.org/paru.git
 cd paru
 makepkg -si
@@ -21,7 +21,7 @@ cd ..
 rm -rf paru
 
 # fish
-paru -S fish
+paru -S --needed --noconfirm fish
 chsh -s /usr/bin/fish
 echo '
   curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
@@ -34,18 +34,18 @@ echo '
 ' | fish
 
 # kitty
-paru -S kitty
+paru -S --needed --noconfirm kitty
 paru -R gnome-terminal
-paru -S nautilus-open-any-terminal
+paru -S --needed --noconfirm nautilus-open-any-terminal
 dconf write /com/github/stunkymonkey/nautilus-open-any-terminal/terminal kitty
 dconf write /com/github/stunkymonkey/nautilus-open-any-terminal/new-tab true
 
 # nvim
-paru -S nvim
+paru -S --needed --noconfirm nvim
 git clone --depth 1 https://github.com/AstroNvim/AstroNvim.git ~/.config/nvim/
 
 # exa
-paru -S exa
+paru -S --needed --noconfirm exa
 echo '
   alias -s ls "exa --icons"
   alias -s ll "exa --icons -l"
@@ -54,29 +54,29 @@ echo '
 ' | fish
 
 # bat
-paru -S bat
+paru -S --needed --noconfirm bat
 
 # downgrade
-paru -S downgrade
+paru -S --needed --noconfirm downgrade
 
 # debtap
-paru -S debtap
+paru -S --needed --noconfirm debtap
 sudo debtap -u
 
 # discord
 curl -sL 'https://discord.com/api/download?platform=linux&format=deb' -o discord.deb
 debtap -q discord.deb
-paru -U *.zst --assume-installed gconf
+paru -U --assume-installed gconf --noconfirm *.zst
 rm *.deb *.zst
 
 # firefox
-paru -S firefox
+paru -S --needed --noconfirm firefox
 
 # obsidian
-paru -S obsidian-appimage
+paru -S --needed --noconfirm obsidian-appimage
 
 # rime
-paru -S ibus-rime
+paru -S --needed --noconfirm ibus-rime
 if [ ! -d ~/.config/ibus/rime/ ]; then
   mkdir -p ~/.config/ibus/rime/
 fi
@@ -85,17 +85,17 @@ curl -sL https://raw.githubusercontent.com/rime/plum/master/rime-install | bash
 plum/rime-install andy0130tw/iridium-bpmf
 
 # neofetch
-paru -S neofetch
+paru -S --needed --noconfirm neofetch
 
 # onefetch
-paru -S onefetch
+paru -S --needed --noconfirm onefetch
 
 # fonts
-paru -S ttf-jetbrains-mono
-paru -S ttf-nerd-fonts-symbols-2048-em-mono
-paru -S noto-fonts-cjk
-paru -S noto-fonts-emoji
+paru -S --needed --noconfirm ttf-jetbrains-mono
+paru -S --needed --noconfirm ttf-nerd-fonts-symbols-2048-em-mono
+paru -S --needed --noconfirm noto-fonts-cjk
+paru -S --needed --noconfirm noto-fonts-emoji
 dconf write /org/gnome/desktop/interface/monospace-font-name 'JetBrains Mono 12'
 
-echo \n\n
+echo -e \n\n
 neofetch
