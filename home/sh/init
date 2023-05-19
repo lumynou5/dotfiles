@@ -24,11 +24,7 @@ rm -rf paru
 paru -S --needed --noconfirm fish
 chsh -s /usr/bin/fish
 echo '
-  curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
-  fisher install IlanCosman/tide@v5
-  fisher install nickeb96/puffer-fish
-  fisher install jorgebucaran/autopair.fish
-  fisher install meaningful-ooo/sponge
+  curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher update
 
   set -U fish_greeting
 ' | fish
