@@ -20,6 +20,10 @@ makepkg -si
 cd ..
 rm -rf paru
 
+# homeshick
+git clone --depth 1 https://github.com/andsens/homeshick.git ~/.homesick/repos/homeshick/
+~/.homesick/repos/homeshick/bin/homeshick clone git@github.com:lumynou5/dotfiles.git
+
 # fish
 paru -S --needed --noconfirm fish
 chsh -s /usr/bin/fish
