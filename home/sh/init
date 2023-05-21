@@ -97,5 +97,5 @@ paru -S --needed --noconfirm noto-fonts-cjk
 paru -S --needed --noconfirm noto-fonts-emoji
 dconf write /org/gnome/desktop/interface/monospace-font-name 'JetBrains Mono 12'
 
-echo -e \n\n
+printf '\n\n'
 neofetch
