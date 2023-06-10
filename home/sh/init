@@ -42,7 +42,7 @@ dconf write /com/github/stunkymonkey/nautilus-open-any-terminal/new-tab true
 
 # nvim
 paru -S --needed --noconfirm nvim
-git clone --depth 1 https://github.com/AstroNvim/AstroNvim.git ~/.config/nvim/
+git clone --depth 1 --branch v3.16.2 https://github.com/AstroNvim/AstroNvim.git ~/.config/nvim/
 
 # exa
 paru -S --needed --noconfirm exa
