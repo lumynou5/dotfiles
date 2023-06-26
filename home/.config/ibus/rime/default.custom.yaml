@@ -1,0 +1,16 @@
+patch:
+  schema_list:
+    - schema: iridium_bpmf
+
+  switcher:
+    caption: 〔方案選單〕
+    hotkeys:
+      - F4
+    save_options:
+      - full_shape
+      - ascii_punct
+      - simplification
+      - extended_charset
+      - zh_hant
+      - zh_hans
+      - zh_hant_tw
