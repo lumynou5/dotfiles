@@ -67,3 +67,12 @@ patch:
       '}' : [ '』','〉', '〗', '｝' ]
     symbols:
       '`' : [ '`' ]
+
+  key_binder:
+    bindings:
+      - { when: has_menu, accept: comma, send: comma }      # ㄝ
+      - { when: has_menu, accept: period, send: period }    # ㄡ
+      - { when: has_menu, accept: minus, send: minus }      # ㄦ
+
+      - { when: has_menu, accept: Shift+BackSpace, send: BackSpace }
+      - { when: has_menu, accept: BackSpace,       send: Control+BackSpace }
