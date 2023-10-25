@@ -10,7 +10,7 @@ version: '20180503'
 sort: by_weight
 use_preset_vocabulary: true
 import_tables:
-  - terra_pinyin
+  - mcbopomofo
 ...
 
 # `char+space` types phonemes
@@ -51,113 +51,6 @@ import_tables:
 ㄤ	ang5
 ㄥ	eng5
 ㄦ	er5
-ㄭ	zh5
-
-ㄧ	yi1	0%
-
-# user custom
-地	di5
-呃	e5
-祢	ni3
-𢘝	ni3
-雌	ci1
-汐	xi4
-泄	xie4
-角	jue2
-究	jiou4
-危	uei2
-夕	xi4
-憎	zeng4
-欸	ei4
-尛	mo5
-識	shi4
-妮	ni2
-污	wu1
-記得	ji4 de2
-不夠	bu2 gou4
-教導	jiao1 dao3
-顯得	xian3 de2
-撲克	pu1 ke4
-屁股	pi4 gu3
-憎惡	zeng4 wu4
-駱駝	luo4 tuo2
-便宜	pian2 yi2
-摸索	mo1 suo3
-時辰	shi2 chen2
-找尋	zhao3 xun2
-模糊	mo2 hu2
-力量	li4 liang4
-認識	ren4 shi4
-麻煩	ma2 fan2
-石頭	shi2 tou2
-豆腐	dou4 fu3
-玉米	yu4 mi3
-芝麻	zhi1 ma2
-蘑菇	mo2 gu1
-額頭	e2 tou2
-棺材	guan1 cai2
-玫瑰	mei2 guei1
-明白	ming2 bai2
-意思	i4 si1
-新鮮	xin1 xian1
-嘴巴	zuei3 ba1
-蒼蠅	cang1 yng2
-玻璃	bo1 li2
-值得	zhi2 de2
-彆扭	bie4 niou3
-給予	gei3 yu3
-但是	dan4 shi4
-這裡	zhe4 li3
-那裡	na4 li3
-上面	shang4 mian4
-下面	xia4 mian4
-閉上	bi4 shang4
-剩下	sheng4 xia4
-衣服	yi1 fu2
-價錢	jia4 qian2
-喉嚨	hou2 lung2
-拳頭	qian2 tou2
-狐狸	hu2 li2
-黴菌	mei2 jun4
-體諒	ti3 liang4
-迷迷糊糊	mi2 mi2 hu2 hu2
-教學	jiao1 xue2
-台詞	tai2 ci2
-熔毀	rung2 huei3
-污染	wu1 ran3
-排泄	pai2 xie4
-不斷	bu2 duan4
-平台	ping2 tai2
-跨平台	kua4 ping2 tai2
-闇黑	an4 hei1
-怨靈	yuan4 ling2
-熟悉	shou2 xi1
-不愧	bu2 kuei4
-泛用	fan4 yuong4
-元組	yuan2 zu3
-大端序	da4 duan1 xu4
-小端序	xiao3 duan1 xu4
-執行緒	zhi2 xing2 xu4
-賓格	bin1 ge2
-論元	lun4 yuan2
-抖內	dou3 nei4
-統整	tung3 zhong3
-紙本	zhi3 ben3
-倍鏡	bei4 jieng4
-櫛瓜	jie2 gua1
-甜椒	tian2 jiao1
-充能	chong1 nong2
-輕量	qing1 liang4
-陰角	yin1 jiao3
-陽角	yang2 jiao3
-本傳	ben3 zhuan4
-機台	ji1 tai2
-舒壓	shu1 ya1
-椒麻	jiao1 ma2
-桌遊	zhuo1 you2
-黑曜石	hei1 yao4 shi2
-
-又双叒叕	you4 you4 you4 you4
 
 # mimic the behavior of most input methods
 ˊ	2
