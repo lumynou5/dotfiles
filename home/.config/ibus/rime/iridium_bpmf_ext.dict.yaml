@@ -52,6 +52,27 @@ import_tables:
 ㄥ	eng5
 ㄦ	er5
 
+# user dict
+闇黑	an4 hei1
+怨靈	yuan4 ling2
+椒麻	jiao1 ma2
+桌遊	zhuo1 you2
+陰角	yin1 jiao3
+陽角	yang2 jiao3
+本傳	ben3 zhuan4
+輕量	qing1 liang4
+跨平台	kua4 ping2 tai2
+多型	duo1 xing2
+元組	yuan2 zu3
+端序	duan1 xu4
+大端序	da4 duan1 xu4
+小端序	xiao3 duan1 xu4
+執行緒	zhi2 xing2 xu4
+賓格	bin1 ge2
+論元	lun4 yuan2
+
+又双叒叕       you4 you4 you4 you4
+
 # mimic the behavior of most input methods
 ˊ	2
 ˇ	3
