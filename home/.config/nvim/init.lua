@@ -26,7 +26,6 @@ if not vim.loop.fs_stat(lazy_path) then
 		"git",
 		"clone",
 		"--filter=blob:none",
-		-- "--depth=1",
 		"--branch=stable",
 		"https://github.com/folke/lazy.nvim.git",
 		lazy_path,
@@ -71,19 +70,24 @@ require("lazy").setup({
 				"c",
 				"lua",
 				"make",
+				"markdown",
+				"markdown_inline",
 			},
 			highlight = { enable = true },
 			indent = { enable = true },
 		},
 	},
 	{
-		"williamboman/mason.nvim",
-		version = '^1.8.3',
+		"neovim/nvim-lspconfig",
 		dependencies = {
-			"neovim/nvim-lspconfig",
+			{ "williamboman/mason.nvim", version = "^1.8.3" },
 			{ "williamboman/mason-lspconfig.nvim", version = "^1.22.0" },
+			{ "folke/neodev.nvim", version = "^2.5.2" },
+			{ "j-hui/fidget.nvim", tag = "legacy" },
 		},
 		config = function ()
+			require("neodev").setup()
+			require("fidget").setup()
 			require("mason").setup()
 			require("mason-lspconfig").setup({
 				ensure_installed = {
@@ -92,19 +96,72 @@ require("lazy").setup({
 				},
 				handlers = {
 					function (server)
-						require("lspconfig")[server].setup({})
+						require("lspconfig")[server].setup({
+							capabilities = require("cmp_nvim_lsp").default_capabilities(),
+						})
 					end,
 				},
 			})
 			vim.api.nvim_create_autocmd("LspAttach", {
 				callback = function (event)
 					local opts = { buffer = event.buf }
-					vim.keymap.set({ "n" }, "gD", vim.lsp.buf.declaration, opts)
-					vim.keymap.set({ "n" }, "gd", vim.lsp.buf.definition, opts)
-					vim.keymap.set({ "n" }, "gr", require("telescope.builtin").lsp_references, opts)
-					vim.keymap.set({ "n" }, "<Leader>i", vim.lsp.buf.hover, opts)
+					vim.keymap.set({ "n" }, "<Leader>lD", vim.lsp.buf.declaration, opts)
+					vim.keymap.set({ "n" }, "<Leader>ld", vim.lsp.buf.definition, opts)
+					vim.keymap.set({ "n" }, "<Leader>lr", require("telescope.builtin").lsp_references, opts)
+					vim.keymap.set({ "n" }, "<Leader>lh", vim.lsp.buf.hover, opts)
+					vim.keymap.set({ "n" }, "<Leader>lm", vim.lsp.buf.rename, opts)
 				end,
 			})
+		end,
+	},
+	{
+		"hrsh7th/nvim-cmp",
+		dependencies = {
+			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-path",
+			"saadparwaiz1/cmp_luasnip",
+		},
+		config = function ()
+			local cmp = require("cmp")
+			cmp.setup({
+				snippet = {
+					expand = function (args)
+						require("luasnip").lsp_expand(args.body)
+					end,
+				},
+				sources = {
+					{ name = "nvim_lsp" },
+					{ name = "path" },
+					{ name = "luasnip" },
+				},
+				mapping = {
+					["<Tab>"] = cmp.mapping(function (fallback)
+						if cmp.visible() then
+							cmp.select_next_item()
+						else
+							fallback()
+						end
+					end, { "i" }),
+					["<S-Tab>"] = cmp.mapping(function (fallback)
+						if cmp.visible() then
+							cmp.select_prev_item()
+						else
+							fallback()
+						end
+					end, { "i" }),
+				},
+			})
+		end,
+	},
+	{
+		"L3MON4D3/LuaSnip",
+		version = "^2.1.0",
+		dependencies = {
+			"rafamadriz/friendly-snippets",
+		},
+		build = "make install_jsregexp",
+		config = function ()
+			require("luasnip.loaders.from_vscode").lazy_load()
 		end,
 	},
 }, {
