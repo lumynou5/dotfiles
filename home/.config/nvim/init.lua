@@ -68,10 +68,12 @@ require("lazy").setup({
 		opts = {
 			ensure_installed = {
 				"c",
+				"cmake",
 				"lua",
 				"make",
 				"markdown",
 				"markdown_inline",
+				"python",
 			},
 			highlight = { enable = true },
 			indent = { enable = true },
@@ -92,7 +94,9 @@ require("lazy").setup({
 			require("mason-lspconfig").setup({
 				ensure_installed = {
 					"clangd",
+					"cmake",
 					"lua_ls",
+					"pylyzer",
 				},
 				handlers = {
 					function (server)
