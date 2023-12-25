@@ -7,17 +7,19 @@
 	editor = nvim
 [gpg]
 	format = ssh
+[init]
+	defaultBranch = main
 [commit]
 	gpgSign = true
 [tag]
 	forceSignAnnotated = true
 	gpgSign = true
-[init]
-	defaultBranch = main
 [merge]
 	ff = false
 [pull]
 	ff = true
+[push]
+	autoSetupRemote = true
 [alias]
 	graph = log --all --graph --color --decorate --oneline
 	ff = merge --ff-only
