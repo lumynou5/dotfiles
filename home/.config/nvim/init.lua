@@ -153,6 +153,20 @@ require("lazy").setup({
 							fallback()
 						end
 					end, { "i" }),
+					["<Esc>"] = cmp.mapping(function (fallback)
+						if cmp.visible() then
+							cmp.abort()
+						else
+							fallback()
+						end
+					end, { "i" }),
+					["<CR>"] = cmp.mapping(function (fallback)
+						if cmp.visible() then
+							cmp.confirm()
+						else
+							fallback()
+						end
+					end, { "i" }),
 				},
 			})
 		end,
