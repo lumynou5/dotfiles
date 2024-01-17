@@ -74,6 +74,7 @@ require("lazy").setup({
 				"markdown",
 				"markdown_inline",
 				"python",
+				"rust",
 			},
 			highlight = { enable = true },
 			indent = { enable = true },
@@ -97,6 +98,7 @@ require("lazy").setup({
 					"cmake",
 					"lua_ls",
 					"pylyzer",
+					"rust_analyzer",
 				},
 				handlers = {
 					function (server)
