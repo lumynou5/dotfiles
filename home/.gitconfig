@@ -20,6 +20,8 @@
 	ff = true
 [push]
 	autoSetupRemote = true
+[log]
+	date = iso
 [alias]
 	graph = log --all --graph --color --decorate --oneline
 	ff = merge --ff-only
