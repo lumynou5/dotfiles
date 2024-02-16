@@ -65,9 +65,9 @@ sudo debtap -u
 
 # discord
 curl -sL 'https://discord.com/api/download?platform=linux&format=deb' -o discord.deb
-debtap -q discord.deb
-paru -U --assume-installed gconf --noconfirm *.zst
-rm *.deb *.zst
+debtap -Q discord.deb
+paru -U --assume-installed gconf --noconfirm discord-*.pkg.tar.zst
+rm discord.deb discord-*.pkg.tar.zst
 
 # firefox
 paru -S --needed --noconfirm firefox
