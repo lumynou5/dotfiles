@@ -115,6 +115,7 @@ require("lazy").setup({
 					vim.keymap.set({ "n" }, "<Leader>ld", vim.lsp.buf.definition, opts)
 					vim.keymap.set({ "n" }, "<Leader>lr", require("telescope.builtin").lsp_references, opts)
 					vim.keymap.set({ "n" }, "<Leader>lh", vim.lsp.buf.hover, opts)
+					vim.keymap.set({ "n" }, "<Leader>le", vim.diagnostic.open_float, opts)
 					vim.keymap.set({ "n" }, "<Leader>lm", vim.lsp.buf.rename, opts)
 				end,
 			})
