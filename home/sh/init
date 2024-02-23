@@ -31,6 +31,8 @@ echo '
   curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher update
 
   set -U fish_greeting
+  tide configure --auto --style=Lean --prompt_colors='True color' --show_time=No --lean_prompt_height='Two lines'\
+                 --prompt_connection=Disconnected --prompt_spacing=Sparse --icons='Few icons' --transient=Yes
 ' | fish
 
 # kitty
@@ -42,16 +44,9 @@ dconf write /com/github/stunkymonkey/nautilus-open-any-terminal/new-tab true
 
 # nvim
 paru -S --needed --noconfirm nvim
-git clone --depth 1 --branch v3.16.2 https://github.com/AstroNvim/AstroNvim.git ~/.config/nvim/
 
-# exa
-paru -S --needed --noconfirm exa
-echo '
-  alias -s ls "exa --icons"
-  alias -s ll "exa --icons -l"
-  alias -s la "exa --icons -la --git"
-  alias -s lt "exa --icons -laT --git --git-ignore git -I .git"
-' | fish
+# eza
+paru -S --needed --noconfirm eza
 
 # bat
 paru -S --needed --noconfirm bat
