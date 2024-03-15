@@ -26,4 +26,4 @@
 	graph = log --all --graph --color --decorate --oneline
 	ff = merge --ff-only
 	unstage = reset HEAD --
-	init-with-ignore = "!command git init && command curl https://raw.githubusercontent.com/github/gitignore/main/$1.gitignore > .gitignore; echo > /dev/null"
+	init-with-ignore = "!command git init && command curl https://raw.githubusercontent.com/github/gitignore/main/$1.gitignore >.gitignore; echo >/dev/null"
