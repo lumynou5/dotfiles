@@ -8,6 +8,8 @@ patch:
     - options: [ 'zh_hant_tw', 'zh_hans' ]
       states: [ '繁體', '简体' ]
 
+  engine/processors/@last: express_editor
+
   punctuator:
     full_shape:
       ' ' : { commit: '　' }
