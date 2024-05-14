@@ -1,20 +1,18 @@
 #!/usr/bin/fish
 
-if not count $argv > /dev/null
-or not test -d $argv[1]
-	echo 'Expected a directory.'
+if not count $argv >/dev/null
+	echo 'Expected one or more directory.'
 	exit 1
 end
 
-# Remove the tailing slash.
-set NAME (string replace -r '/$' '' $argv[1])
-
-set NAME (string replace -r '/' '_' $NAME)
-
-set TAR_NAME $NAME.tar.xz
-
-tar -cJf $TAR_NAME $argv[1]
-
-~/sh/dropbox_uploader upload $TAR_NAME /backup/
-
-rm $TAR_NAME
+for path in $argv
+	if not path is -dr -- $path
+		echo \'$path\'' is not a directory, ignored.'
+		continue
+	end
+	set -l basename (path basename -- $path)
+	set -l tar_path /tmp/$basename.tar.xz
+	tar -cJf $tar_path -- $path
+	~/sh/dropbox_uploader upload $tar_path /backup/
+	rm $tar_path
+end
