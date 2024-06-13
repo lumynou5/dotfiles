@@ -80,7 +80,7 @@ curl -sL https://raw.githubusercontent.com/rime/plum/master/rime-install | bash
 plum/rime-install andy0130tw/iridium-bpmf
 
 # neofetch
-paru -S --needed --noconfirm neofetch
+paru -S --needed --noconfirm fastfetch
 
 # onefetch
 paru -S --needed --noconfirm onefetch
@@ -93,4 +93,4 @@ paru -S --needed --noconfirm noto-fonts-emoji
 dconf write /org/gnome/desktop/interface/monospace-font-name 'JetBrains Mono 12'
 
 printf '\n\n'
-neofetch
+fastfetch
