@@ -1,7 +1,11 @@
 patch:
   switches/@0/reset: 0
+  switches/@2/name: simplification
 
   engine/processors/@last: express_editor
+
+  simp_zh_tw/option_name: simplification
+  simp_zh_cn/option_name: simplification
 
   punctuator:
     full_shape:
