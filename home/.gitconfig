@@ -23,7 +23,8 @@
 [log]
 	date = iso
 [alias]
-	graph = log --all --graph --color --decorate --oneline
+	drop = "!command git stash -u && command git stash drop; echo >/dev/null"
 	ff = merge --ff-only
-	unstage = reset HEAD --
+	graph = log --all --graph --color --decorate --oneline
 	init-with-ignore = "!command git init && command curl https://raw.githubusercontent.com/github/gitignore/main/$1.gitignore >.gitignore; echo >/dev/null"
+	unstage = reset HEAD --
