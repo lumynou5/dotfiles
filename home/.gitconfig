@@ -11,6 +11,8 @@
 	defaultBranch = main
 [commit]
 	gpgSign = true
+[stash]
+	showPatch = true
 [tag]
 	forceSignAnnotated = true
 	gpgSign = true
