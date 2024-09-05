@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-cd (mktemp -d)
+cd `mktemp -d`
 
 curl -L 'https://discord.com/api/download?platform=linux&format=deb' -o discord.deb
 debtap -Q discord.deb
