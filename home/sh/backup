@@ -5,14 +5,15 @@ if not count $argv >/dev/null
 	exit 1
 end
 
+set -l tmpdir (mktemp -d)
+
 for path in $argv
 	if not path is -dr -- $path
 		echo \'$path\'' is not a directory, ignored.'
 		continue
 	end
 	set -l basename (path basename -- $path)
-	set -l tar_path /tmp/$basename.tar.xz
+	set -l tar_path $tmpdir/$basename.tar.xz
 	tar -cJf $tar_path -- $path
 	~/sh/dropbox_uploader upload $tar_path /backup/
-	rm $tar_path
 end

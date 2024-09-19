@@ -5,7 +5,6 @@ cd `mktemp -d`
 curl -L 'https://discord.com/api/download?platform=linux&format=deb' -o discord.deb
 debtap -Q discord.deb
 paru -U --assume-installed gconf --noconfirm discord-*.pkg.tar.zst
-rm discord.deb discord-*.pkg.tar.zst
 
 discord >discord.log 2>/dev/null &
 DISCORD_PID=$!
