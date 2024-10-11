@@ -1,6 +1,7 @@
 patch:
   schema_list:
     - schema: iridium_bpmf
+    - schema: japanese
 
   switcher:
     caption: 〔方案選單〕
