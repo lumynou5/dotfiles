@@ -15,3 +15,6 @@ patch:
       - zh_hant
       - zh_hans
       - zh_hant_tw
+
+  menu:
+    page_size: 10
