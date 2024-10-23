@@ -72,3 +72,6 @@ patch:
 
       - { when: has_menu, accept: Shift+BackSpace, send: BackSpace }
       - { when: has_menu, accept: BackSpace,       send: Control+BackSpace }
+
+      - { when: has_menu, accept: Left,  send: Page_Up }
+      - { when: has_menu, accept: Right, send: Page_Down }
