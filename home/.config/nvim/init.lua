@@ -205,9 +205,9 @@ require("lazy").setup({
 					["<Esc>"] = cmp.mapping(function (fallback)
 						if cmp.visible() then
 							cmp.abort()
-						else
-							fallback()
 						end
+						-- Exit insert mode anyway.
+						fallback()
 					end, { "i" }),
 					["<CR>"] = cmp.mapping(function (fallback)
 						if cmp.visible() then
