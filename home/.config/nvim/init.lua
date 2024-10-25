@@ -1,5 +1,7 @@
 vim.opt.number = true
 vim.opt.relativenumber = true
+vim.opt.cursorline = true
+vim.opt.cursorlineopt = "number"
 vim.opt.wrap = false
 vim.opt.hlsearch = false
 vim.opt.autoread = true
@@ -10,7 +12,8 @@ vim.g.mapleader = " "
 
 vim.keymap.set({ "n" }, "J", "<Cmd>move .+1<CR>==")
 vim.keymap.set({ "n" }, "K", "<Cmd>move .-2<CR>==")
--- The '< and '> marks are set after leaving visual mode.
+-- The '< and '> marks are set after leaving visual mode, and <Cmd> doesn't
+-- leave the mode.
 vim.keymap.set({ "v" }, "J", ":move '>+1<CR>gv=gv")
 vim.keymap.set({ "v" }, "K", ":move '<-2<CR>gv=gv")
 
@@ -35,6 +38,44 @@ vim.opt.rtp:prepend(lazy_path)
 
 require("lazy").setup({
 	{
+		"catppuccin/nvim",
+		name = "catppuccin",
+		priority = 1000,
+		opts = {
+			transparent_background = true,
+			styles = {
+				conditionals = {},
+			},
+		},
+	},
+	{
+		"nvim-lualine/lualine.nvim",
+		dependencies = {
+			"nvim-tree/nvim-web-devicons",
+		},
+		opts = {
+			options = {
+				component_separators = { left = "", right = "" },
+				section_separators = { left = " ", right = " " },
+				disabled_filetypes = { statusline = { "alpha" } },
+			},
+			sections = {
+				lualine_a = { { "mode" } },
+				lualine_b = { { "branch", icon = "󰘬" } },
+				lualine_c = { { "filename", path = 1 } },
+				lualine_x = { { "diagnostics" } },
+				lualine_y = {
+					{ "filetype" },
+					{ "encoding" },
+				},
+				lualine_z = {
+					{ "progress" },
+					{ "location" },
+				},
+			},
+		},
+	},
+	{
 		"lukas-reineke/indent-blankline.nvim",
 		main = "ibl",
 		config = true,
@@ -50,7 +91,7 @@ require("lazy").setup({
 			"nvim-lua/plenary.nvim"
 		},
 		config = function ()
-			require("telescope").setup()
+			require("telescope").setup({})
 			local builtin = require("telescope.builtin")
 			vim.keymap.set({ "n" }, "<Leader>ff", builtin.find_files)
 			vim.keymap.set({ "n" }, "<Leader>fg", builtin.live_grep)
@@ -69,12 +110,17 @@ require("lazy").setup({
 			ensure_installed = {
 				"c",
 				"cmake",
+				"json",
 				"lua",
+				"luadoc",
 				"make",
 				"markdown",
 				"markdown_inline",
 				"python",
 				"rust",
+				"vim",
+				"vimdoc",
+				"yaml",
 			},
 			highlight = { enable = true },
 			indent = { enable = true },
@@ -185,8 +231,5 @@ require("lazy").setup({
 			require("luasnip.loaders.from_vscode").lazy_load()
 		end,
 	},
-}, {
-	install = {
-		colorscheme = { "default" },
-	},
 })
+vim.cmd("colorscheme catppuccin-mocha")
