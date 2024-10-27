@@ -1,12 +1,12 @@
 #!/usr/bin/bash
 
 while true; do
-  read -p "Are you sure to initialize? [y/N] "
-  case $REPLY in
-    "") exit 1;;
-    "n" | "N") exit 1;;
-    "y" | "Y") break;;
-  esac
+	read -p 'Are you sure to initialize? [y/N] '
+	case $REPLY in
+		'') exit 1;;
+		'n' | 'N') exit 1;;
+		'y' | 'Y') break;;
+	esac
 done
 
 # git
@@ -27,13 +27,14 @@ git clone --depth 1 https://github.com/andsens/homeshick.git ~/.homesick/repos/h
 # fish
 paru -S --needed --noconfirm fish
 chsh -s /usr/bin/fish
-echo '
-  curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher update
+fish <<-EOF
+	curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher update
 
-  set -U fish_greeting
-  tide configure --auto --style=Lean --prompt_colors='True color' --show_time=No --lean_prompt_height='Two lines'\
-                 --prompt_connection=Disconnected --prompt_spacing=Sparse --icons='Few icons' --transient=Yes
-' | fish
+	set -U fish_greeting
+	tide configure --auto --style=Lean --prompt_colors='True color' --show_time=No --lean_prompt_height='Two lines'\
+		--prompt_connection=Disconnected --prompt_spacing=Sparse --icons='Few icons' --transient=Yes
+	set -U tide_git_icon '󰘬'
+EOF
 
 # kitty
 paru -S --needed --noconfirm kitty
@@ -70,7 +71,7 @@ paru -S --needed --noconfirm obsidian-appimage
 # rime
 paru -S --needed --noconfirm ibus-rime
 if [ ! -d ~/.config/ibus/rime/ ]; then
-  mkdir -p ~/.config/ibus/rime/
+	mkdir -p ~/.config/ibus/rime/
 fi
 cd ~/.config/ibus/rime/
 curl -sL https://raw.githubusercontent.com/rime/plum/master/rime-install | bash
