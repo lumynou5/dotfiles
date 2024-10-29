@@ -4,8 +4,8 @@ vim.opt.cursorline = true
 vim.opt.cursorlineopt = "number"
 vim.opt.wrap = false
 vim.opt.hlsearch = false
-vim.opt.autoread = true
 vim.opt.splitright = true
+vim.opt.scrolloff = 5
 vim.opt.termguicolors = true
 
 vim.g.mapleader = " "
