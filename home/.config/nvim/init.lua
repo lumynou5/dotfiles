@@ -193,20 +193,8 @@ require("lazy").setup({
 					{ name = "luasnip" },
 				},
 				mapping = {
-					["<Tab>"] = cmp.mapping(function (fallback)
-						if cmp.visible() then
-							cmp.select_next_item()
-						else
-							fallback()
-						end
-					end, { "i" }),
-					["<S-Tab>"] = cmp.mapping(function (fallback)
-						if cmp.visible() then
-							cmp.select_prev_item()
-						else
-							fallback()
-						end
-					end, { "i" }),
+					["<Tab>"] = cmp.mapping.select_next_item(),
+					["<S-Tab>"] = cmp.mapping.select_prev_item(),
 					["<Esc>"] = cmp.mapping(function (fallback)
 						if cmp.visible() then
 							cmp.abort()
@@ -214,13 +202,7 @@ require("lazy").setup({
 						-- Exit insert mode anyway.
 						fallback()
 					end, { "i" }),
-					["<CR>"] = cmp.mapping(function (fallback)
-						if cmp.visible() then
-							cmp.confirm()
-						else
-							fallback()
-						end
-					end, { "i" }),
+					["<CR>"] = cmp.mapping.confirm(),
 				},
 			})
 		end,
