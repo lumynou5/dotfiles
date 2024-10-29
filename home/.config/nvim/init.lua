@@ -165,6 +165,7 @@ require("lazy").setup({
 					vim.keymap.set({ "n" }, "<Leader>lm", vim.lsp.buf.rename, opts)
 				end,
 			})
+			vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
 		end,
 	},
 	{
@@ -177,6 +178,10 @@ require("lazy").setup({
 		config = function ()
 			local cmp = require("cmp")
 			cmp.setup({
+				window = {
+					completion = cmp.config.window.bordered(),
+					documentation = cmp.config.window.bordered(),
+				},
 				snippet = {
 					expand = function (args)
 						require("luasnip").lsp_expand(args.body)
