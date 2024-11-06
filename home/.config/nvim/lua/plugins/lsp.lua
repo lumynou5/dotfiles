@@ -7,11 +7,13 @@ return {
 	config = function ()
 		require("mason-lspconfig").setup({
 			ensure_installed = {
+				"astro",
 				"clangd",
 				"cmake",
 				"lua_ls",
 				"pylyzer",
 				"rust_analyzer",
+				"ts_ls",
 			},
 			handlers = {
 				function (server)
