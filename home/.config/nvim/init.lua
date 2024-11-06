@@ -99,6 +99,11 @@ require("lazy").setup({
 		end,
 	},
 	{
+		"altermo/ultimate-autopair.nvim",
+		branch = "v0.6",
+		config = true,
+	},
+	{
 		"numToStr/Comment.nvim",
 		config = true,
 	},
