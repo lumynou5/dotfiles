@@ -10,12 +10,12 @@ vim.opt.termguicolors = true
 
 vim.g.mapleader = " "
 
-vim.keymap.set({ "n" }, "J", "<Cmd>move .+1<CR>==")
-vim.keymap.set({ "n" }, "K", "<Cmd>move .-2<CR>==")
+vim.keymap.set({ "n" }, "<C-j>", "<Cmd>move .+1<CR>==")
+vim.keymap.set({ "n" }, "<C-k>", "<Cmd>move .-2<CR>==")
 -- The '< and '> marks are set after leaving visual mode, and <Cmd> doesn't
 -- leave the mode.
-vim.keymap.set({ "v" }, "J", ":move '>+1<CR>gv=gv")
-vim.keymap.set({ "v" }, "K", ":move '<-2<CR>gv=gv")
+vim.keymap.set({ "v" }, "<C-j>", ":move '>+1<CR>gv=gv")
+vim.keymap.set({ "v" }, "<C-k>", ":move '<-2<CR>gv=gv")
 
 vim.keymap.set({ "n", "v" }, "<Leader>y", "\"+y")
 vim.keymap.set({ "n", "v" }, "<Leader>p", "\"+p")
