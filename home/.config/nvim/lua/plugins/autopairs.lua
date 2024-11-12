@@ -5,6 +5,10 @@ return {
 		config = true,
 	},
 	{
+		"windwp/nvim-ts-autotag",
+		config = true,
+	},
+	{
 		"kylechui/nvim-surround",
 		config = true,
 	}
