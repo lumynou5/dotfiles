@@ -14,11 +14,24 @@ return {
 				"pylyzer",
 				"rust_analyzer",
 				"ts_ls",
+				"yamlls",
 			},
 			handlers = {
 				function (server)
 					require("lspconfig")[server].setup({
 						capabilities = require("cmp_nvim_lsp").default_capabilities(),
+					})
+				end,
+				["yamlls"] = function ()
+					require("lspconfig").yamlls.setup({
+						settings = {
+							yaml = {
+								schemaStore = {
+									enable = true,
+									url = "https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/api/json/catalog.json",
+								},
+							},
+						},
 					})
 				end,
 			},
