@@ -1,8 +1,20 @@
 return {
 	"neovim/nvim-lspconfig",
 	dependencies = {
-		{ "williamboman/mason.nvim", version = "^1.8.3", config = true },
-		{ "williamboman/mason-lspconfig.nvim", version = "^1.22.0" },
+		{
+			"williamboman/mason.nvim",
+			version = "^1.8.3",
+			opts = {
+				ui = {
+					border = "rounded",
+					height = 0.8,
+				},
+			},
+		},
+		{
+			"williamboman/mason-lspconfig.nvim",
+			version = "^1.22.0",
+		},
 	},
 	config = function ()
 		require("mason-lspconfig").setup({
