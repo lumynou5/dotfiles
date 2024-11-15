@@ -4,8 +4,10 @@ return {
 	main = "nvim-treesitter.configs",
 	opts = {
 		ensure_installed = {
+			"astro",
 			"c",
 			"cmake",
+			"javascript",
 			"json",
 			"lua",
 			"luadoc",
@@ -14,6 +16,7 @@ return {
 			"markdown_inline",
 			"python",
 			"rust",
+			"typescript",
 			"vim",
 			"vimdoc",
 			"yaml",
