@@ -10,3 +10,12 @@ discord >discord.log 2>/dev/null &
 DISCORD_PID=$!
 tail -f discord.log | grep -m 1 'mainScreen.UpdaterEvents: UPDATER_HISTORY_QUERY_AND_TRUNCATE'
 kill $DISCORD_PID
+
+CONFIG_HOME=${XDG_CONFIG_HOME:-$HOME/.config}
+BETTERDISCORD_PATH=$CONFIG_HOME/BetterDiscord/data/betterdiscord.asar
+curl -L 'https://github.com/BetterDiscord/BetterDiscord/releases/latest/download/betterdiscord.asar' -o $BETTERDISCORD_PATH
+DISCORD_DIR=$CONFIG_HOME/discord/`pacman -Q discord | grep -Eo '[0-9.]*' | head -n 1`/modules/discord_desktop_core
+cat >$DISCORD_DIR/index.js <<-EOF
+	require("${BETTERDISCORD_PATH}");
+	module.exports = require("./core.asar");
+EOF
