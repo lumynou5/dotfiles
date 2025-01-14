@@ -1,21 +1,37 @@
 #!/usr/bin/bash
 
-cd `mktemp -d`
+if [ "$EUID" -ne 0 ]; then
+	echo 'Need to run as root.'
+	exit 1
+fi
 
-curl -L 'https://discord.com/api/download?platform=linux&format=deb' -o discord.deb
-debtap -Q discord.deb
-paru -U --assume-installed gconf --noconfirm discord-*.pkg.tar.zst
+nosudo() {
+	sudo -u $SUDO_USER -- "$@"
+}
 
-discord >discord.log 2>/dev/null &
+cd `nosudo mktemp -d`
+
+nosudo curl -L 'https://discord.com/api/download?platform=linux&format=tar.gz' -o discord.tar.gz
+nosudo tar -zxf discord.tar.gz
+INSTALL_DIR=/usr/local/share/discord
+rm -rf $INSTALL_DIR
+mv -T Discord $INSTALL_DIR
+ln -sf $INSTALL_DIR/Discord /usr/local/bin/discord
+ln -sf $INSTALL_DIR/discord.desktop /usr/local/share/applications/
+ln -sf $INSTALL_DIR/discord.png /usr/local/share/icons/hicolor/256x256/apps/
+sed -i 's|/usr|/usr/local|' $INSTALL_DIR/discord.desktop
+
+nosudo discord >discord.log 2>/dev/null &
 DISCORD_PID=$!
-tail -f discord.log | grep -m 1 'mainScreen.UpdaterEvents: UPDATER_HISTORY_QUERY_AND_TRUNCATE'
+nosudo tail -f discord.log | nosudo grep -qm 1 'mainScreen.UpdaterEvents: UPDATER_HISTORY_QUERY_AND_TRUNCATE'
 kill $DISCORD_PID
 
-CONFIG_HOME=${XDG_CONFIG_HOME:-$HOME/.config}
+CONFIG_HOME=`eval echo ~$SUDO_USER`/.config
 BETTERDISCORD_PATH=$CONFIG_HOME/BetterDiscord/data/betterdiscord.asar
-curl -L 'https://github.com/BetterDiscord/BetterDiscord/releases/latest/download/betterdiscord.asar' -o $BETTERDISCORD_PATH
-DISCORD_DIR=$CONFIG_HOME/discord/`pacman -Q discord | grep -Eo '[0-9.]*' | head -n 1`/modules/discord_desktop_core
-cat >$DISCORD_DIR/index.js <<-EOF
+nosudo curl -L 'https://github.com/BetterDiscord/BetterDiscord/releases/latest/download/betterdiscord.asar' -o $BETTERDISCORD_PATH
+DISCORD_VERSION=`nosudo grep -oE '[0-9.]+' $INSTALL_DIR/resources/build_info.json`
+DISCORD_DIR=$CONFIG_HOME/discord/$DISCORD_VERSION/modules/discord_desktop_core
+nosudo cat >$DISCORD_DIR/index.js <<-EOF
 	require("${BETTERDISCORD_PATH}");
 	module.exports = require("./core.asar");
 EOF
