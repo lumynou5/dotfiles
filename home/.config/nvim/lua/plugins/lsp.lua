@@ -1,23 +1,21 @@
 return {
-	"neovim/nvim-lspconfig",
-	dependencies = {
-		{
-			"williamboman/mason.nvim",
-			version = "^1.8.3",
-			opts = {
-				ui = {
-					border = "rounded",
-					height = 0.8,
-				},
+	{
+		"williamboman/mason.nvim",
+		version = "^1.8.3",
+		opts = {
+			ui = {
+				border = "rounded",
+				height = 0.8,
 			},
 		},
-		{
-			"williamboman/mason-lspconfig.nvim",
-			version = "^1.22.0",
-		},
 	},
-	config = function ()
-		require("mason-lspconfig").setup({
+	{
+		"williamboman/mason-lspconfig.nvim",
+		version = "^1.22.0",
+		dependencies = {
+			"williamboman/mason.nvim",
+		},
+		opts = {
 			ensure_installed = {
 				"astro",
 				"clangd",
@@ -47,18 +45,23 @@ return {
 					})
 				end,
 			},
-		})
-		vim.api.nvim_create_autocmd("LspAttach", {
-			callback = function (event)
-				local opts = { buffer = event.buf }
-				vim.keymap.set({ "n" }, "<Leader>lD", vim.lsp.buf.declaration, opts)
-				vim.keymap.set({ "n" }, "<Leader>ld", vim.lsp.buf.definition, opts)
-				vim.keymap.set({ "n" }, "<Leader>lr", require("telescope.builtin").lsp_references, opts)
-				vim.keymap.set({ "n" }, "<Leader>lh", vim.lsp.buf.hover, opts)
-				vim.keymap.set({ "n" }, "<Leader>le", vim.diagnostic.open_float, opts)
-				vim.keymap.set({ "n" }, "<Leader>lm", vim.lsp.buf.rename, opts)
-			end,
-		})
-		vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
-	end,
+		},
+	},
+	{
+		"neovim/nvim-lspconfig",
+		config = function ()
+			vim.api.nvim_create_autocmd("LspAttach", {
+				callback = function (event)
+					local opts = { buffer = event.buf }
+					vim.keymap.set({ "n" }, "<Leader>lD", vim.lsp.buf.declaration, opts)
+					vim.keymap.set({ "n" }, "<Leader>ld", vim.lsp.buf.definition, opts)
+					vim.keymap.set({ "n" }, "<Leader>lr", require("telescope.builtin").lsp_references, opts)
+					vim.keymap.set({ "n" }, "<Leader>lh", vim.lsp.buf.hover, opts)
+					vim.keymap.set({ "n" }, "<Leader>le", vim.diagnostic.open_float, opts)
+					vim.keymap.set({ "n" }, "<Leader>lm", vim.lsp.buf.rename, opts)
+				end,
+			})
+			vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
+		end,
+	},
 }
