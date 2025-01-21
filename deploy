@@ -16,6 +16,7 @@ cat $script_dir/MANIFEST | while read -Ll filename
 		echo "[ERROR] $filename exists but it's not a symlink"
 		exit 1
 	end
+	mkdir -p (path dirname ~/$filename)
 	ln -s $script_dir/$filename ~/$filename
 	echo "[OK] $filename symlinked"
 end
