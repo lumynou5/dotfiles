@@ -1,0 +1,21 @@
+#!/usr/bin/fish
+
+set -l script_dir (status current-filename | path resolve | path dirname)
+
+cat $script_dir/MANIFEST | while read -Ll filename
+	test -z $filename && continue
+	if test ! -e $script_dir/$filename
+		echo "[WARNING] $filename not found"
+		continue
+	end
+	if test -L ~/$filename
+		echo "[OK] $filename already symlinked, skipping"
+		continue
+	end
+	if test -e ~/$filename
+		echo "[ERROR] $filename exists but it's not a symlink"
+		exit 1
+	end
+	ln -s $script_dir/$filename ~/$filename
+	echo "[OK] $filename symlinked"
+end
