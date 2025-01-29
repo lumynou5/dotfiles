@@ -20,3 +20,16 @@ cat $script_dir/MANIFEST | while read -Ll filename
 	ln -s $script_dir/$filename ~/$filename
 	echo "[OK] $filename symlinked"
 end
+
+test -e $script_dir/.MANIFEST &&
+comm -13 --nocheck-order $script_dir/MANIFEST $script_dir/.MANIFEST | while read -Ll filename
+	test -z $filename && continue
+	if test -e ~/$filename -a ! -L ~/$filename
+		echo "[WARNING] $filename exists but it's not a symlink"
+		continue
+	end
+	rm -f ~/$filename
+	echo "[OK] stale symlink $filename removed"
+end
+
+cp $script_dir/MANIFEST $script_dir/.MANIFEST
