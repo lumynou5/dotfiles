@@ -8,7 +8,6 @@
 
 .config/nvim
 
-.gitconfig
-.gitignore
+.config/git
 
 sh
