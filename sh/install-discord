@@ -26,7 +26,7 @@ DISCORD_PID=$!
 nosudo tail -f discord.log | nosudo grep -qm 1 'mainScreen.UpdaterEvents: UPDATER_HISTORY_QUERY_AND_TRUNCATE'
 kill $DISCORD_PID
 
-CONFIG_HOME=`eval echo ~$SUDO_USER`/.config
+CONFIG_HOME=$SUDO_HOME/.config
 BETTERDISCORD_PATH=$CONFIG_HOME/BetterDiscord/data/betterdiscord.asar
 nosudo curl -L 'https://github.com/BetterDiscord/BetterDiscord/releases/latest/download/betterdiscord.asar' -o $BETTERDISCORD_PATH
 DISCORD_VERSION=`nosudo grep -oE '[0-9.]+' $INSTALL_DIR/resources/build_info.json`
