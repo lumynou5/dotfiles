@@ -3,6 +3,7 @@ vim.opt.relativenumber = true
 vim.opt.signcolumn = "yes"
 vim.opt.cursorline = true
 vim.opt.cursorlineopt = "number"
+vim.opt.colorcolumn = "+1"
 vim.opt.wrap = false
 vim.opt.hlsearch = false
 vim.opt.splitright = true
