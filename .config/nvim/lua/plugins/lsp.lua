@@ -18,6 +18,7 @@ return {
 		opts = {
 			ensure_installed = {
 				"astro",
+				"bashls",
 				"clangd",
 				"cmake",
 				"lua_ls",
