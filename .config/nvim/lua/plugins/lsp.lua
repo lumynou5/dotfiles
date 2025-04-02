@@ -54,12 +54,11 @@ return {
 			vim.api.nvim_create_autocmd("LspAttach", {
 				callback = function (event)
 					local opts = { buffer = event.buf }
-					vim.keymap.set({ "n" }, "<Leader>lD", vim.lsp.buf.declaration, opts)
-					vim.keymap.set({ "n" }, "<Leader>ld", vim.lsp.buf.definition, opts)
-					vim.keymap.set({ "n" }, "<Leader>lr", require("telescope.builtin").lsp_references, opts)
-					vim.keymap.set({ "n" }, "<Leader>lh", vim.lsp.buf.hover, opts)
-					vim.keymap.set({ "n" }, "<Leader>le", vim.diagnostic.open_float, opts)
-					vim.keymap.set({ "n" }, "<Leader>lm", vim.lsp.buf.rename, opts)
+					vim.keymap.set({ "n" }, "grD", vim.lsp.buf.declaration, opts)
+					vim.keymap.set({ "n" }, "grd", vim.lsp.buf.definition, opts)
+					vim.keymap.set({ "n" }, "grr", require("telescope.builtin").lsp_references, opts)
+					vim.keymap.set({ "n" }, "grh", vim.lsp.buf.hover, opts)
+					vim.keymap.set({ "n" }, "gre", vim.diagnostic.open_float, opts)
 				end,
 			})
 			vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
