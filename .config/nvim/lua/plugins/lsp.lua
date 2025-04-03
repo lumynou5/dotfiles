@@ -61,7 +61,13 @@ return {
 					vim.keymap.set({ "n" }, "gre", vim.diagnostic.open_float, opts)
 				end,
 			})
-			vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
+			local orig_open_floating_preview = vim.lsp.util.open_floating_preview
+			--- @diagnostic disable-next-line: duplicate-set-field
+			function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+				opts = opts or {}
+				opts.border = opts.border or "rounded"
+				return orig_open_floating_preview(contents, syntax, opts, ...)
+			end
 		end,
 	},
 }
