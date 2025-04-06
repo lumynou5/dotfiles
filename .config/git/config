@@ -24,7 +24,7 @@
 [log]
 	date = iso
 [alias]
-	drop = "!command git stash -u && command git stash drop; echo >/dev/null"
+	drop = "!command git stash -u -- $1 && command git stash drop; echo >/dev/null"
 	ff = merge --ff-only
 	graph = log --all --graph --color --decorate --oneline
 	init-with-ignore = "!command git init && command curl https://raw.githubusercontent.com/github/gitignore/main/$1.gitignore >.gitignore; echo >/dev/null"
