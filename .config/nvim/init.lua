@@ -24,6 +24,8 @@ vim.keymap.set({ "n", "v" }, "<Leader>p", "\"+p")
 
 vim.keymap.set({ "n" }, "<Leader>bc", "<Cmd>bdelete<CR>")
 
+vim.diagnostic.config({ virtual_lines = { current_line = true } })
+
 -- Bootstrap Lazy.nvim.
 local lazy_path = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.uv.fs_stat(lazy_path) then
