@@ -22,7 +22,7 @@ return {
 				"clangd",
 				"cmake",
 				"lua_ls",
-				"pylyzer",
+				"pyright",
 				"rust_analyzer",
 				"ts_ls",
 				"yamlls",
