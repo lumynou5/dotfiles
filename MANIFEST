@@ -1,6 +1,7 @@
 .config/fish/fish_plugins
 
 .config/ibus/rime/default.custom.yaml
+.config/ibus/rime/ibus_rime.custom.yaml
 .config/ibus/rime/iridium_bpmf.custom.yaml
 .config/ibus/rime/iridium_bpmf_ext.dict.yaml
 
