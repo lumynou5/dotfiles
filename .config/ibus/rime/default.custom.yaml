@@ -10,6 +10,7 @@ patch:
       - F4
     save_options:
       - full_shape
+      - ascii_mode
       - ascii_punct
       - simplification
       - extended_charset

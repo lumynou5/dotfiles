@@ -1,5 +1,5 @@
 patch:
-  switches/@0/reset: 0
+  switches/@0/reset: ~
 
   engine/processors/@last: express_editor
 
@@ -63,6 +63,9 @@ patch:
     symbols:
       '`': [ '`' ]
 
+  ascii_composer/switch_key/Shift_L: noop
+  ascii_composer/switch_key/Shift_R: noop
+
   # Override `[` and `]` behaviors.
   key_binder:
     bindings:
@@ -75,3 +78,6 @@ patch:
 
       - { when: has_menu, accept: Left,  send: Page_Up }
       - { when: has_menu, accept: Right, send: Page_Down }
+
+      - { when: always, accept: Shift_L, send_sequence: '{F4}{2}' }
+      - { when: always, accept: Shift_R, send_sequence: '{F4}{2}' }
