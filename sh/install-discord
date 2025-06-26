@@ -1,7 +1,9 @@
 #!/usr/bin/bash
 
-if [ "$EUID" -ne 0 ]; then
-	echo 'Need to run as root.'
+set -e
+
+if [ -z "$SUDO_USER" -a "$EUID" -ne 0 ]; then
+	echo 'Need to run as root with sudo.'
 	exit 1
 fi
 
@@ -11,7 +13,7 @@ nosudo() {
 
 cd `nosudo mktemp -d`
 
-nosudo curl -L 'https://discord.com/api/download?platform=linux&format=tar.gz' -o discord.tar.gz
+nosudo curl -Lo discord.tar.gz 'https://discord.com/api/download?platform=linux&format=tar.gz'
 nosudo tar -zxf discord.tar.gz
 INSTALL_DIR=/usr/local/share/discord
 rm -rf $INSTALL_DIR
@@ -22,13 +24,12 @@ ln -sf $INSTALL_DIR/discord.png /usr/local/share/icons/hicolor/256x256/apps/
 sed -i 's|/usr|/usr/local|' $INSTALL_DIR/discord.desktop
 
 nosudo discord >discord.log 2>/dev/null &
-DISCORD_PID=$!
-nosudo tail -f discord.log | nosudo grep -qm 1 'mainScreen.UpdaterEvents: UPDATER_HISTORY_QUERY_AND_TRUNCATE'
-kill $DISCORD_PID
+nosudo tail -f discord.log | nosudo grep -qm 4 'mainScreen.UpdaterEvents: UPDATER_HISTORY_QUERY_AND_TRUNCATE'
+kill `ps --ppid $! -o pid=`
 
 CONFIG_HOME=$SUDO_HOME/.config
 BETTERDISCORD_PATH=$CONFIG_HOME/BetterDiscord/data/betterdiscord.asar
-nosudo curl -L 'https://github.com/BetterDiscord/BetterDiscord/releases/latest/download/betterdiscord.asar' -o $BETTERDISCORD_PATH
+nosudo curl -Lo $BETTERDISCORD_PATH 'https://github.com/BetterDiscord/BetterDiscord/releases/latest/download/betterdiscord.asar'
 DISCORD_VERSION=`nosudo grep -oE '[0-9.]+' $INSTALL_DIR/resources/build_info.json`
 DISCORD_DIR=$CONFIG_HOME/discord/$DISCORD_VERSION/modules/discord_desktop_core
 nosudo cat >$DISCORD_DIR/index.js <<-EOF
