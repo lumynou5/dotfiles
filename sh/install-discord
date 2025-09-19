@@ -23,7 +23,7 @@ ln -sf $INSTALL_DIR/discord.desktop /usr/local/share/applications/
 ln -sf $INSTALL_DIR/discord.png /usr/local/share/icons/hicolor/256x256/apps/
 sed -i 's|/usr|/usr/local|' $INSTALL_DIR/discord.desktop
 
-nosudo discord >discord.log 2>/dev/null &
+nosudo discord --start-minimized >discord.log 2>/dev/null &
 nosudo tail -f discord.log | nosudo grep -qm 4 'mainScreen.UpdaterEvents: UPDATER_HISTORY_QUERY_AND_TRUNCATE'
 kill `ps --ppid $! -o pid=`
 
