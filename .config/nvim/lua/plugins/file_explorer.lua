@@ -5,8 +5,8 @@ return {
 	},
 	opts = {
 		float = {
-			max_width = 0.9,
-			border = "rounded",
+			max_width = 0.8,
+			max_height = 0.8,
 		},
 	},
 	lazy = false,

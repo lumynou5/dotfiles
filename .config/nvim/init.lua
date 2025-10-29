@@ -9,6 +9,7 @@ vim.opt.hlsearch = false
 vim.opt.splitright = true
 vim.opt.scrolloff = 5
 vim.opt.termguicolors = true
+vim.opt.winborder = "rounded"
 
 vim.g.mapleader = " "
 

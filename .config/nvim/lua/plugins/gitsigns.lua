@@ -1,8 +1,6 @@
 return {
 	"lewis6991/gitsigns.nvim",
-	opts = {
-		preview_config = { border = "rounded" },
-	},
+	config = true,
 	event = "BufEnter",
 	keys = {
 		{ "<Leader>hs", "<Cmd>Gitsigns stage_hunk<CR>", mode = "n" },
