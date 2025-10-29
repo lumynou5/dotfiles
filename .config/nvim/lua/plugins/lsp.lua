@@ -27,12 +27,12 @@ return {
 			},
 			handlers = {
 				function (server)
-					require("lspconfig")[server].setup({
+					vim.lsp.config(server, {
 						capabilities = require("cmp_nvim_lsp").default_capabilities(),
 					})
 				end,
 				["yamlls"] = function ()
-					require("lspconfig").yamlls.setup({
+					vim.lsp.config("yamlls", {
 						settings = {
 							yaml = {
 								schemaStore = {
