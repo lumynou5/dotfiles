@@ -51,3 +51,18 @@ require("lazy").setup("plugins", {
 })
 
 vim.cmd("colorscheme catppuccin-mocha")
+
+-- Restore cursor.
+vim.api.nvim_create_autocmd("BufReadPost", {
+	callback = function (args)
+		local exclude = {
+			"gitcommit",
+			"gitrebase"
+		}
+		if (vim.tbl_contains(exclude, vim.bo[args.buf].filetype)) then return end
+		local mark = vim.api.nvim_buf_get_mark(args.buf, "\"")
+		local nr_lines = vim.api.nvim_buf_line_count(args.buf)
+		if mark[1] < 0 or mark[1] > nr_lines then return end
+		vim.cmd("normal! g'\"zvzz")
+	end,
+})
