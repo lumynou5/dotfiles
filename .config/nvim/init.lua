@@ -53,11 +53,11 @@ require("lazy").setup("plugins", {
 vim.cmd("colorscheme catppuccin-mocha")
 
 -- Restore cursor.
-vim.api.nvim_create_autocmd("BufReadPost", {
+vim.api.nvim_create_autocmd("BufWinEnter", {
 	callback = function (args)
 		local exclude = {
 			"gitcommit",
-			"gitrebase"
+			"gitrebase",
 		}
 		if (vim.tbl_contains(exclude, vim.bo[args.buf].filetype)) then return end
 		local mark = vim.api.nvim_buf_get_mark(args.buf, "\"")
