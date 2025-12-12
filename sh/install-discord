@@ -11,7 +11,7 @@ nosudo() {
 	sudo -u $SUDO_USER -- "$@"
 }
 
-cd `nosudo mktemp -d`
+cd $(nosudo mktemp -d)
 
 nosudo curl -Lo discord.tar.gz 'https://discord.com/api/download?platform=linux&format=tar.gz'
 nosudo tar -zxf discord.tar.gz
@@ -25,14 +25,13 @@ sed -i 's|/usr|/usr/local|' $INSTALL_DIR/discord.desktop
 
 nosudo discord --start-minimized >discord.log 2>/dev/null &
 nosudo tail -f discord.log | nosudo grep -qm 4 'mainScreen.UpdaterEvents: UPDATER_HISTORY_QUERY_AND_TRUNCATE'
-kill `ps --ppid $! -o pid=`
+kill $(ps --ppid $! -o pid=)
 
 CONFIG_HOME=$SUDO_HOME/.config
 BETTERDISCORD_PATH=$CONFIG_HOME/BetterDiscord/data/betterdiscord.asar
-nosudo curl -Lo $BETTERDISCORD_PATH 'https://github.com/BetterDiscord/BetterDiscord/releases/latest/download/betterdiscord.asar'
-DISCORD_VERSION=`nosudo grep -oE '[0-9.]+' $INSTALL_DIR/resources/build_info.json`
-DISCORD_DIR=$CONFIG_HOME/discord/$DISCORD_VERSION/modules/discord_desktop_core
-nosudo cat >$DISCORD_DIR/index.js <<-EOF
+nosudo curl -Lo $BETTERDISCORD_PATH \
+	'https://github.com/BetterDiscord/BetterDiscord/releases/latest/download/betterdiscord.asar'
+nosudo cat >$CONFIG_HOME/discord/[0-9]*/modules/discord_desktop_core/index.js <<-EOF
 	require("${BETTERDISCORD_PATH}");
 	module.exports = require("./core.asar");
 EOF
