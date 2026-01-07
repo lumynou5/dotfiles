@@ -18,6 +18,7 @@ return {
 				"bashls",
 				"clangd",
 				"cmake",
+				"cssls",
 				"lua_ls",
 				"pyright",
 				"rust_analyzer",
