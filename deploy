@@ -5,31 +5,37 @@ set -l script_dir (status current-filename | path resolve | path dirname)
 cat $script_dir/MANIFEST | while read -Ll filename
 	test -z $filename && continue
 	if test ! -e $script_dir/$filename
-		echo "[WARNING] $filename not found"
-		continue
-	end
-	if test -L ~/$filename
-		echo "[OK] $filename already symlinked, skipping"
-		continue
-	end
-	if test -e ~/$filename
+		if test ! -e ~/$filename
+			echo "[WARNING] $filename not found"\n
+			continue
+		end
+		mkdir -p (path dirname $script_dir/$filename)
+		mv ~/$filename $script_dir/$filename
+		echo "[OK] $filename moved from home"
+	else if test -L ~/$filename
+		if test ~/$filename -ef $script_dir/$filename
+			echo "[OK] $filename already symlinked, skipping"\n
+			continue
+		end
+		echo "[WARNING] $filename is a symlink to other place, overwriting"
+	else if test -e ~/$filename
 		echo "[ERROR] $filename exists but it's not a symlink"
 		exit 1
 	end
 	mkdir -p (path dirname ~/$filename)
 	ln -s $script_dir/$filename ~/$filename
-	echo "[OK] $filename symlinked"
+	echo "[OK] $filename symlinked"\n
 end
 
 test -e $script_dir/.MANIFEST &&
 comm -13 --nocheck-order $script_dir/MANIFEST $script_dir/.MANIFEST | while read -Ll filename
 	test -z $filename && continue
 	if test -e ~/$filename -a ! -L ~/$filename
-		echo "[WARNING] $filename exists but it's not a symlink"
+		echo "[WARNING] $filename exists but it's not a symlink, skipping"\n
 		continue
 	end
 	rm -f ~/$filename
-	echo "[OK] stale symlink $filename removed"
+	echo "[OK] stale symlink $filename removed"\n
 end
 
 cp $script_dir/MANIFEST $script_dir/.MANIFEST
