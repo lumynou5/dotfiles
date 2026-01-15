@@ -25,14 +25,10 @@ return {
 			mapping = {
 				["<Tab>"] = cmp.mapping.select_next_item(),
 				["<S-Tab>"] = cmp.mapping.select_prev_item(),
-				["<Esc>"] = cmp.mapping(function (fallback)
-					if cmp.visible() then
-						cmp.abort()
-					end
-					-- Exit insert mode anyway.
-					fallback()
-				end, { "i" }),
 				["<CR>"] = cmp.mapping.confirm(),
+				["<C-Space>"] = cmp.mapping.complete(),
+				["<C-f>"] = cmp.mapping.scroll_docs(4),
+				["<C-b>"] = cmp.mapping.scroll_docs(-4),
 			},
 		})
 	end,
