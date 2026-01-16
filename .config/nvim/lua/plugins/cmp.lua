@@ -1,3 +1,31 @@
+local kind_icons = {
+	Text = "󰀬 ",
+	Method = "󰊕 ",
+	Function = "󰊕 ",
+	Constructor = "󱀥 ",
+	Field = "󰓹 ",
+	Variable = "󰫧 ",
+	Class = "󰙅 ",
+	Interface = "󰠱 ",
+	Module = "󰏗 ",
+	Property = "󰖷 ",
+	Unit = "󰑭 ",
+	Value = "󰎠 ",
+	Enum = "󰈍 ",
+	Keyword = "󰦨 ",
+	Snippet = "󰯂 ",
+	Color = "󰏘 ",
+	File = "󰈔 ",
+	Reference = "󰌧 ",
+	Folder = "󰉋 ",
+	EnumMember = "󰫮 ",
+	Constant = "󰏿 ",
+	Struct = "󰙅 ",
+	Event = "󱐋 ",
+	Operator = "󰪚 ",
+	TypeParameter = "󱄽 ",
+}
+
 return {
 	"hrsh7th/nvim-cmp",
 	dependencies = {
@@ -29,6 +57,13 @@ return {
 				["<C-Space>"] = cmp.mapping.complete(),
 				["<C-f>"] = cmp.mapping.scroll_docs(4),
 				["<C-b>"] = cmp.mapping.scroll_docs(-4),
+			},
+			formatting = {
+				format = function (entry, vim_item)
+					vim_item.icon = kind_icons[vim_item.kind]
+					vim_item.icon_hl_group = "CmpItemKind" .. vim_item.kind
+					return vim_item
+				end,
 			},
 		})
 	end,
