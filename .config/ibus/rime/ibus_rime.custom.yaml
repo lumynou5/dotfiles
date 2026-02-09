@@ -1,2 +1,6 @@
 patch:
-  style/horizontal: false
+  style/+:
+    inline_preedit: true
+    preedit_style: composition
+    cursor_type: insert
+    horizontal: false
