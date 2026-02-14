@@ -3,6 +3,8 @@
 #
 # A dictionary file as a stub; expanding the dictionary for the most basic use
 # cases for now
+#
+# no comment
 
 ---
 name: iridium_bpmf_ext
@@ -13,47 +15,45 @@ import_tables:
   - mcbopomofo
 ...
 
-# `char+space` types phonemes
-ㄅ	b5
-ㄆ	p5
-ㄇ	m5
-ㄈ	f5
-ㄉ	d5
-ㄊ	t5
-ㄋ	n5
-ㄌ	l5
-ㄍ	g5
-ㄎ	k5
-ㄏ	h5
-ㄐ	j5
-ㄑ	q5
-ㄒ	x5
-ㄓ	zh5
-ㄔ	ch5
-ㄕ	sh5
-ㄖ	ri5
-ㄗ	zi5
-ㄘ	ci5
-ㄙ	si5
-ㄧ	yi5
-ㄨ	wu5
-ㄩ	yu5
-ㄚ	a5
-ㄛ	o5
-ㄜ	e5
-ㄝ	eh5
-ㄞ	ai5
-ㄟ	ei5
-ㄠ	ao5
-ㄡ	ou5
-ㄢ	an5
-ㄣ	en5
-ㄤ	ang5
-ㄥ	eng5
-ㄦ	er5
-ㄭ	zh5
+ㄅ	b1#〔注音〕
+ㄆ	p1#〔注音〕
+ㄇ	m1#〔注音〕
+ㄈ	f1#〔注音〕
+ㄉ	d1#〔注音〕
+ㄊ	t1#〔注音〕
+ㄋ	n1#〔注音〕
+ㄌ	l1#〔注音〕
+ㄍ	g1#〔注音〕
+ㄎ	k1#〔注音〕
+ㄏ	h1#〔注音〕
+ㄐ	j1#〔注音〕
+ㄑ	q1#〔注音〕
+ㄒ	x1#〔注音〕
+ㄓ	zh1#〔注音〕
+ㄔ	ch1#〔注音〕
+ㄕ	sh1#〔注音〕
+ㄖ	ri1#〔注音〕
+ㄗ	zi1#〔注音〕
+ㄘ	ci1#〔注音〕
+ㄙ	si1#〔注音〕
+ㄧ	yi1#〔注音〕
+ㄨ	wu1#〔注音〕
+ㄩ	yu1#〔注音〕
+ㄚ	a1#〔注音〕
+ㄛ	o1#〔注音〕
+ㄜ	e1#〔注音〕
+ㄝ	eh1#〔注音〕
+ㄞ	ai1#〔注音〕
+ㄟ	ei1#〔注音〕
+ㄠ	ao1#〔注音〕
+ㄡ	ou1#〔注音〕
+ㄢ	an1#〔注音〕
+ㄣ	en1#〔注音〕
+ㄤ	ang1#〔注音〕
+ㄥ	eng1#〔注音〕
+ㄦ	er1#〔注音〕
+ㄭ	zh1#〔注音〕
 
-# user dict
 闇黑	an4 hei1
 怨靈	yuan4 ling2
 椒麻	jiao1 ma2
@@ -76,13 +76,11 @@ import_tables:
 
 又双叒叕       you4 you4 you4 you4
 
-# mimic the behavior of most input methods
 ˊ	2
 ˇ	3
 ˋ	4
 ˙	5
 
-# preferred / added punct.
 一	yi1	34%
 一	yi2	33%
 一	yi4	33%

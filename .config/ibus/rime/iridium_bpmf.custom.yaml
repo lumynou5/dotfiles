@@ -2,6 +2,15 @@ patch:
   switches/@0/reset: 0
 
   engine/processors/@last: express_editor
+  engine/filters/@next: reverse_lookup_filter@self_reverse_lookup
+
+  speller/algebra/@before 0: 'xform|#.*$||'
+
+  self_reverse_lookup:
+    dictionary: iridium_bpmf_ext
+    comment_format:
+      - 'xform|^[^#]+||'
+      - 'xform|#||'
 
   punctuator:
     full_shape:
