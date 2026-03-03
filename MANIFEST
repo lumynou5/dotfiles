@@ -1,4 +1,5 @@
 .config/fish/fish_plugins
+.config/fish/config.fish
 
 .config/ibus/rime/default.custom.yaml
 .config/ibus/rime/ibus_rime.custom.yaml
