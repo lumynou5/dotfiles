@@ -6,6 +6,7 @@ vim.opt.cursorlineopt = "number"
 vim.opt.colorcolumn = "+1"
 vim.opt.wrap = false
 vim.opt.hlsearch = false
+vim.opt.showmode = false
 vim.opt.splitright = true
 vim.opt.scrolloff = 5
 vim.opt.termguicolors = true
