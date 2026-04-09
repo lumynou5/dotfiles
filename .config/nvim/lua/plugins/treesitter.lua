@@ -2,9 +2,8 @@ return {
 	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
-		main = "nvim-treesitter.configs",
-		opts = {
-			ensure_installed = {
+		config = function ()
+			require("nvim-treesitter").install({
 				"astro",
 				"bash",
 				"c",
@@ -22,10 +21,9 @@ return {
 				"vim",
 				"vimdoc",
 				"yaml",
-			},
-			highlight = { enable = true },
-			indent = { enable = true },
-		},
+			})
+		end,
+		lazy = false,
 	},
 	{
 		"nvim-treesitter/nvim-treesitter-context",
