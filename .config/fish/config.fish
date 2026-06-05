@@ -8,5 +8,7 @@ function _nvm_auto --on-variable PWD
 end
 _nvm_auto
 
-# adb
-set -xp PATH ~/Android/Sdk/platform-tools
+if status is-login
+	# adb
+	set -xp PATH ~/Android/Sdk/platform-tools
+end
