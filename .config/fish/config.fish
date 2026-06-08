@@ -11,4 +11,8 @@ _nvm_auto
 if status is-login
 	# adb
 	set -xp PATH ~/Android/Sdk/platform-tools
+
+	# pnpm
+	set -x PNPM_HOME ~/.local/share/pnpm
+	set -xp PATH $PNPM_HOME/bin
 end
