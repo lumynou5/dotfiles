@@ -2,10 +2,10 @@
 
 set -e
 
-APP_DIR=$(/usr/share/discord/updater_bootstrap --no-zenity ${XDG_CONFIG_HOME:=$HOME/.config}/discord stable 'https://updates.discord.com/')
+APP_DIR=${ /usr/share/discord/updater_bootstrap --no-zenity ${XDG_CONFIG_HOME:=$HOME/.config}/discord stable 'https://updates.discord.com/'; }
 
 BETTERDISCORD_PATH=$XDG_CONFIG_HOME/BetterDiscord/data/betterdiscord.asar
-curl -Lo $BETTERDISCORD_PATH \
+curl -Lo $BETTERDISCORD_PATH --create-dirs \
 	'https://github.com/BetterDiscord/BetterDiscord/releases/latest/download/betterdiscord.asar'
 cat >$XDG_CONFIG_HOME/discord/$APP_DIR/modules/discord_desktop_core-1/discord_desktop_core/index.js <<-EOF
 	require("${BETTERDISCORD_PATH}");
