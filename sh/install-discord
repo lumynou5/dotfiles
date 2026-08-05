@@ -2,12 +2,16 @@
 
 set -e
 
-APP_DIR=${ /usr/share/discord/updater_bootstrap --no-zenity ${XDG_CONFIG_HOME:=$HOME/.config}/discord stable 'https://updates.discord.com/'; }
+BETTERDISCORD_URL=https://github.com/BetterDiscord/BetterDiscord/releases/latest
+BETTERDISCORD_PATH=${XDG_CONFIG_HOME:=$HOME/.config}/BetterDiscord/data
 
-BETTERDISCORD_PATH=$XDG_CONFIG_HOME/BetterDiscord/data/betterdiscord.asar
-curl -Lo $BETTERDISCORD_PATH --create-dirs \
-	'https://github.com/BetterDiscord/BetterDiscord/releases/latest/download/betterdiscord.asar'
+APP_DIR=$(/usr/share/discord/updater_bootstrap --no-zenity "$XDG_CONFIG_HOME/discord" stable 'https://updates.discord.com/')
+
+REMOTE_VER=$(basename $(curl -Io /dev/null -w '%{redirect_url}' $BETTERDISCORD_URL))
+LOCAL_VER=$(jq -r .version "$BETTERDISCORD_PATH/stable/misc.json")
+[[ $(vercmp $REMOTE_VER $LOCAL_VER) -gt 0 ]] &&
+	curl -LO --output-dir $BETTERDISCORD_PATH --create-dirs "$BETTERDISCORD_URL/download/betterdiscord.asar"
 cat >$XDG_CONFIG_HOME/discord/$APP_DIR/modules/discord_desktop_core-1/discord_desktop_core/index.js <<-EOF
-	require("${BETTERDISCORD_PATH}");
+	require("$BETTERDISCORD_PATH/betterdiscord.asar");
 	module.exports = require("./core.asar");
 EOF
