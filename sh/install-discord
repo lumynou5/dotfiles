@@ -11,7 +11,7 @@ REMOTE_VER=$(basename $(curl -Io /dev/null -w '%{redirect_url}' $BETTERDISCORD_U
 LOCAL_VER=$(jq -r .version "$BETTERDISCORD_PATH/stable/misc.json")
 [[ $(vercmp $REMOTE_VER $LOCAL_VER) -gt 0 ]] &&
 	curl -LO --output-dir $BETTERDISCORD_PATH --create-dirs "$BETTERDISCORD_URL/download/betterdiscord.asar"
-cat >$XDG_CONFIG_HOME/discord/$APP_DIR/modules/discord_desktop_core-1/discord_desktop_core/index.js <<-EOF
+cat >$XDG_CONFIG_HOME/discord/$APP_DIR/modules/discord_desktop_core-2/discord_desktop_core/index.js <<-EOF
 	require("$BETTERDISCORD_PATH/betterdiscord.asar");
 	module.exports = require("./core.asar");
 EOF
