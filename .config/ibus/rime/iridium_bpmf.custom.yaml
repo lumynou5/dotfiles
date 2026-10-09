@@ -1,7 +1,11 @@
 patch:
   switches/@0/reset: 0
+  switches/@2:
+    name: zh_hans
+    states: [ '繁體', '简体' ]
 
   engine/processors/@last: express_editor
+  engine/filters/@0: ~
   engine/filters/@next: reverse_lookup_filter@self_reverse_lookup
 
   speller/algebra/@before 0: 'xform|#.*$||'
